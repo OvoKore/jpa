@@ -10,6 +10,7 @@ import java.awt.Toolkit;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.text.NumberFormatter;
 import entidades.Personage;
 import entidades.RelacaoPlayerPersonage;
@@ -32,6 +33,7 @@ public class SelecaoPersonagem {
 	private JFormattedTextField txfVig;
 	private JTextField txfRaca;
 	private JTextField txfClasse;
+	List<Personage> listPersonage;
 
 	public void OpenSelecaoPersonagem() {
 		EventQueue.invokeLater(new Runnable() {
@@ -76,12 +78,17 @@ public class SelecaoPersonagem {
 		cbxPersonagens = new JComboBox();
 		cbxPersonagens.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		cbxPersonagens.setBounds(152, 14, 272, 24);
-		List<Personage> listPersonage = Conexao.manager.em.createNamedQuery(RelacaoPlayerPersonage.OBTER_PERSONAGE_POR_ID_PLAYER, Personage.class)
+		listPersonage = Conexao.manager.em.createNamedQuery(RelacaoPlayerPersonage.OBTER_PERSONAGE_POR_ID_PLAYER, Personage.class)
 				.setParameter("id", Conexao.manager.ObterPlayer().getId())
 				.getResultList();
 		for (Personage personage : listPersonage) {
 			cbxPersonagens.addItem(personage.getNome());
 		}
+		cbxPersonagens.addActionListener (new ActionListener () {
+		    public void actionPerformed(ActionEvent e) {
+		    	Recarregar();
+		    }
+		});
 		frmSelecaoPersonagem.getContentPane().add(cbxPersonagens);
 		
 		JLabel lblPersonagens = new JLabel("PERSONAGENS");
@@ -142,6 +149,7 @@ public class SelecaoPersonagem {
 		JButton btnRecarregar = new JButton("RECARREGAR");
 		btnRecarregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Recarregar();
 			}
 		});
 		btnRecarregar.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -227,7 +235,31 @@ public class SelecaoPersonagem {
 		frmSelecaoPersonagem.dispose();
 	}
 	
+	private void Recarregar() {
+		if (cbxPersonagens.getSelectedItem() != null) {
+			Personage tmpPersonage = listPersonage.get(cbxPersonagens.getSelectedIndex());
+			txfFor.setText(String.valueOf(tmpPersonage.getForca()));
+			txfInt.setText(String.valueOf(tmpPersonage.getInteligencia()));
+			txfVit.setText(String.valueOf(tmpPersonage.getVitalidade()));
+			txfCar.setText(String.valueOf(tmpPersonage.getCarisma()));
+			txfDes.setText(String.valueOf(tmpPersonage.getDestreza()));
+			txfVig.setText(String.valueOf(tmpPersonage.getVigor()));
+			txfRaca.setText(tmpPersonage.getRaca().getNome());
+			txfClasse.setText(tmpPersonage.getClasse().getNome());
+		}
+	}
+	
 	private void Salvar() {
-		
+		if (cbxPersonagens.getSelectedItem() != null) {
+			Personage tmpPersonage = listPersonage.get(cbxPersonagens.getSelectedIndex());
+			tmpPersonage.setForca(Integer.parseInt(txfFor.getText()));
+			tmpPersonage.setInteligencia(Integer.parseInt(txfInt.getText()));
+			tmpPersonage.setVitalidade(Integer.parseInt(txfVit.getText()));
+			tmpPersonage.setCarisma(Integer.parseInt(txfCar.getText()));
+			tmpPersonage.setDestreza(Integer.parseInt(txfDes.getText()));
+			tmpPersonage.setVigor(Integer.parseInt(txfVig.getText()));
+			Conexao.manager.Update(tmpPersonage);
+			JOptionPane.showMessageDialog(null, "Personagem atualizado.");
+		}
 	}
 }

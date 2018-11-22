@@ -32,7 +32,7 @@ public class Menu {
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Erro ao carregar.\nPor favor, reporte ao desenvolvedor.");
 					e.printStackTrace();
-					return;
+					System.exit(1);
 				}
 				try {
 					Menu window = new Menu();

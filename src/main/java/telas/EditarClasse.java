@@ -50,7 +50,6 @@ public class EditarClasse {
 		Opcao.frmOpcao.hide();
 		
 		frmEditarClasse = new JFrame();
-		frmEditarClasse.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 25));
 		frmEditarClasse.setTitle("EDITAR CLASSE");
 		frmEditarClasse.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\note\\Documents\\jpa\\jpa\\src\\main\\resources\\icon\\icon.png"));
 		frmEditarClasse.setBounds(100, 100, 440, 170);
