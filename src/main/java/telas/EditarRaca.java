@@ -144,8 +144,8 @@ public class EditarRaca {
 		if (cmbRaca.getSelectedItem() != null) {
 			int dialogResult = JOptionPane.showConfirmDialog(null, "Deseja excluir o campo?");
 			if(dialogResult == JOptionPane.YES_OPTION) {
-				if(Conexao.manager.em.createNamedQuery(Personage.OBTER_POR_CLASSE_NOME, Personage.class)
-				.setParameter("classe", cmbRaca.getSelectedItem().toString())
+				if(Conexao.manager.em.createNamedQuery(Personage.OBTER_POR_RACA_NOME, Personage.class)
+				.setParameter("raca", cmbRaca.getSelectedItem().toString())
 				.getResultList().size() == 0) {
 					Raca raca = 
 						Conexao.manager.em.createNamedQuery(Raca.OBTER_POR_NOME, Raca.class)

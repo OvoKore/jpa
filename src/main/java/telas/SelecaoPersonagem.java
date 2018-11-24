@@ -24,7 +24,7 @@ import javax.swing.JTextField;
 public class SelecaoPersonagem {
 
 	public static JFrame frmSelecaoPersonagem;
-	private JComboBox cbxPersonagens;
+	private static JComboBox cbxPersonagens;
 	private JFormattedTextField txfFor;
 	private JFormattedTextField txfInt;
 	private JFormattedTextField txfVit;
@@ -33,7 +33,7 @@ public class SelecaoPersonagem {
 	private JFormattedTextField txfVig;
 	private JTextField txfRaca;
 	private JTextField txfClasse;
-	List<Personage> listPersonage;
+	static List<Personage> listPersonage;
 
 	public void OpenSelecaoPersonagem() {
 		EventQueue.invokeLater(new Runnable() {
@@ -260,6 +260,16 @@ public class SelecaoPersonagem {
 			tmpPersonage.setVigor(Integer.parseInt(txfVig.getText()));
 			Conexao.manager.Update(tmpPersonage);
 			JOptionPane.showMessageDialog(null, "Personagem atualizado.");
+		}
+	}
+	
+	public static void AtualizarComboBox() {
+		cbxPersonagens.removeAllItems();
+		listPersonage = Conexao.manager.em.createNamedQuery(RelacaoPlayerPersonage.OBTER_PERSONAGE_POR_ID_PLAYER, Personage.class)
+				.setParameter("id", Conexao.manager.ObterPlayer().getId())
+				.getResultList();
+		for (Personage personage : listPersonage) {
+			cbxPersonagens.addItem(personage.getNome());
 		}
 	}
 }

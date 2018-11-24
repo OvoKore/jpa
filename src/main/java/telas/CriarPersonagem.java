@@ -203,6 +203,7 @@ public class CriarPersonagem {
 	
 	private void close() {
 		SelecaoPersonagem.frmSelecaoPersonagem.show();
+		SelecaoPersonagem.AtualizarComboBox();
 		frameCriarPersonagem.dispose();
 	}
 	
