@@ -166,37 +166,37 @@ public class SelecaoPersonagem {
 		btnSalvar.setBounds(10, 154, 132, 55);
 		frmSelecaoPersonagem.getContentPane().add(btnSalvar);
 		
-		txfFor = new JFormattedTextField();
+		txfFor = new JFormattedTextField(formatter);
 		txfFor.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txfFor.setBounds(198, 49, 86, 24);
 		frmSelecaoPersonagem.getContentPane().add(txfFor);
 		txfFor.setColumns(10);
 		
-		txfInt = new JFormattedTextField();
+		txfInt = new JFormattedTextField(formatter);
 		txfInt.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txfInt.setColumns(10);
 		txfInt.setBounds(338, 49, 86, 24);
 		frmSelecaoPersonagem.getContentPane().add(txfInt);
 		
-		txfVit = new JFormattedTextField();
+		txfVit = new JFormattedTextField(formatter);
 		txfVit.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txfVit.setColumns(10);
 		txfVit.setBounds(198, 84, 86, 24);
 		frmSelecaoPersonagem.getContentPane().add(txfVit);
 		
-		txfCar = new JFormattedTextField();
+		txfCar = new JFormattedTextField(formatter);
 		txfCar.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txfCar.setColumns(10);
 		txfCar.setBounds(338, 84, 86, 24);
 		frmSelecaoPersonagem.getContentPane().add(txfCar);
 		
-		txfDes = new JFormattedTextField();
+		txfDes = new JFormattedTextField(formatter);
 		txfDes.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txfDes.setColumns(10);
 		txfDes.setBounds(198, 119, 86, 24);
 		frmSelecaoPersonagem.getContentPane().add(txfDes);
 		
-		txfVig = new JFormattedTextField();
+		txfVig = new JFormattedTextField(formatter);
 		txfVig.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txfVig.setColumns(10);
 		txfVig.setBounds(338, 119, 86, 24);
