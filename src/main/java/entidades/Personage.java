@@ -1,5 +1,7 @@
 package entidades;
 
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -73,6 +77,11 @@ public class Personage {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ID_RACA", nullable = false)
 	private Raca raca;
+	
+	@ManyToMany(mappedBy = "personagens",
+			cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@JoinTable(name = "itens")
+	private java.util.List<Item> itens;
 
 	public long getId() {
 		return id;
